@@ -2,7 +2,8 @@ services:
   - type: web
     name: backend
     env: docker
-    dockerfile: server/Dockerfile
+    dockerContext: .
+    dockerfilePath: server/Dockerfile
     startCommand: npm run start:all
     envVars:
       - key: PORT
@@ -12,9 +13,7 @@ services:
       - key: REDIS_PORT
         value: 6379
       - key: MONGO_URI
-        sync: false  # This tells Render to use an externally set environment variable
-    dependsOn:
-      - redis
+        sync: false  # Externally set environment variable in Render dashboard
 
   - type: redis
     name: redis
