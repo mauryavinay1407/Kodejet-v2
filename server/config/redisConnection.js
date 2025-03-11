@@ -1,7 +1,9 @@
 const { Redis } = require("ioredis");
 
 if (process.env.REDIS_URL) {
-    redisConnection = new Redis(process.env.REDIS_URL);
+    redisConnection = new Redis(process.env.REDIS_URL, {
+        maxRetriesPerRequest: null,
+    });
 } else {
     redisConnection = new Redis({
         host: process.env.REDIS_HOST || "host.docker.internal",
