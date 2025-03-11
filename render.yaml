@@ -4,7 +4,6 @@ services:
     env: docker
     dockerContext: .
     dockerfilePath: server/Dockerfile
-    startCommand: npm run start:all
     envVars:
       - key: PORT
         value: 3000
@@ -18,3 +17,4 @@ services:
   - type: redis
     name: redis
     plan: free
+    ipAllowList: []  # Restrict access to only Render services (backend)
