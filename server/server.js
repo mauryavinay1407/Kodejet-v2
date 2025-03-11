@@ -8,7 +8,7 @@ require("./workers/jobWorker");
 const app = express();
 
 const corsOptions = {
-    origin: ["http://localhost:5173"],
+    origin: ["https://kodejet-v2.onrender.com","http://localhost:5173"],
     credentials: true,
 };
 
