@@ -2,9 +2,8 @@ services:
   - type: web
     name: backend
     env: docker
-    dockerfile: server/Dockerfile  # Correct relative path
-    buildCommand: echo "Building with Dockerfile..."  # Optional
-    startCommand: npm run start:all  # Start the app
+    dockerfile: server/Dockerfile
+    startCommand: npm run start:all
     envVars:
       - key: PORT
         value: 3000
@@ -13,16 +12,10 @@ services:
       - key: REDIS_PORT
         value: 6379
       - key: MONGO_URI
-        value: mongodb://mongo:27017/kodejet
+        sync: false  # This tells Render to use an externally set environment variable
     dependsOn:
-      - mongo
       - redis
 
   - type: redis
     name: redis
     plan: free
-
-  - type: mongodb
-    name: mongo
-    plan: free
-    databaseName: kodejet
